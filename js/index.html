@@ -1,0 +1,131 @@
+<html>
+				<head>
+
+
+
+				</head>
+
+
+
+				<body>
+
+								<script>
+var task_2 = function(){
+
+				var numberArr= [];
+
+				//if we have 4 million we will be above 4 million a lot!
+				const nr = 100;
+				for(var i = 0; i < nr;i++){
+								numberArr.push(NaN);
+
+				}
+
+				console.log("array", numberArr.reduce);
+				console.log("filter", numberArr.filter);
+
+				var finalValue = numberArr.reduce(function( fibArr, numberNotUsed, index){
+
+								var prevPrev = fibArr[index];
+								var prev = fibArr[index +1];
+
+								console.log("prevPrev", prevPrev);	
+								console.log("prev", prev);	
+								return fibArr.concat(prevPrev + prev);
+				}, [1,2])
+				.filter(function(value){
+								return value <= 4e6;
+				})
+				.filter(function( value ){
+
+								return value % 2 === 0;	
+				})
+				.reduce(function(acc, value){
+								return acc + value;
+				}, 0);
+
+				return finalValue;
+};
+
+var task_3 = function(){
+
+				var numberArr= [];
+
+				//if we have 4 million we will be above 4 million a lot!
+				const nr = 100000;
+				for(var i = 1; i < nr;i++){
+								numberArr.push(i);
+
+				}
+
+				const primeCheckNr = Math.round(Math.sqrt(nr));
+				var primeCheckList = numberArr.slice(1,primeCheckNr);
+
+				var primeFactors = numberArr.filter(function( value ){
+
+								//check if any value is dividibale, then give 
+								var isPrime = primeCheckList.every(function(primeVal){
+	
+									//do not want to handle same element
+									if(primeVal === value){
+										return true;
+									}
+									else {
+
+									return  value % primeVal !==  0;
+									}
+								});
+
+								return isPrime ;
+				})
+				.filter(function(value){
+
+					var testValue = 600851475143;
+
+					return testValue % value === 0;
+				});
+
+				var maxNumber = Math.max.apply(null, primeFactors);
+
+
+				return maxNumber;
+};
+
+
+var task_4 = function(){
+	var arr = [];
+	for(var i= 900; i < 1000;i++){
+		for(var j = i; j < 1000; j++){
+
+				arr.push({nr1:i, nr2:j});
+				
+		
+		}
+	
+	}
+
+	var values = arr.map(function(obj){
+
+		return obj.nr1 * obj.nr2;
+	})
+	.filter(function(value){
+
+			var reversedString = value.toString().split("").reverse().join("");
+
+		return reversedString === value.toString();
+	});
+
+	var max = Math.max.apply(null, values);
+
+	return max;
+
+}
+finalValue = task_4();
+document.body.innerHTML = JSON.stringify(finalValue);
+								</script>
+
+				</body>
+
+
+
+</html>
